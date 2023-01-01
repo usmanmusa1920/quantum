@@ -169,19 +169,11 @@ Once you've got your token, you're ready to try to connect to a quantum computer
 
 Now you can connect with your token by doing:
 ```py
-IBMQ.save_account("TOKEN HERE")
-```
-I am going to store my token to a file so I dont accidentally share it, but you can just paste it right in here as a string. For me, however, I will do:
-
-
-```python
 from qiskit import IBMQ
 
-IBMQ.save_account(open("token.txt","r").read())
-```
-This saves on your actual machine, so you only need to do this once ever (unless your token changes), which is why I am getting the "Credentials already present" message. From then on, you can just do:
+IBMQ.save_account("TOKEN HERE")
+# IBMQ.save_account(open("token.txt","r").read()) # by saving the token in a file
 
-```py
 IBMQ.load_account()
 <AccountProvider for IBMQ(hub='ibm-q', group='open', project='main')>
 ```
