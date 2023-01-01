@@ -1,7 +1,7 @@
 
-# Quantum world
+# Quantum
 
-Welcome quantum computer programming. There's no shortage of hype around quantum computing on the internet, but I am going to still outline the propositions made by quantum computing in general, as well as how this pertains to us and programmers who intend to work with quantum computers, which we will be doing immediately in this series. 
+Welcome to quantum computer programming. There's no shortage of hype around quantum computing on the internet, but I am going to still outline the propositions made by quantum computing in general, as well as how this pertains to us and programmers who intend to work with quantum computers, which we will be doing immediately in this series. 
 
 <h4><strong>Warning</strong></h4>
 
@@ -28,8 +28,6 @@ Qubits also have 2 other very important properties:
     <li>Superposition - this is where a qubit is, while left unobserved, all of its possible states. Once observed, it will collapse into one of the possible states.</li>
     <li>Entanglement - This is where one qubit's state is linked to another. When entangled with eachother, a change in one of the entangled qubits will change the other instanty. At any distance. Take take that both of those words are fully intended. Instantly and *any* distance, which is what Einstein referred to as "Spooky action at a distance," since this appeared to violate various rules like transmitting information faster than the speed of light. This is referred to as quantum non-locality. I haven't personally seen a compelling explanation as to why this isn't spooky action at a distance, but we are assured by super smart people that it isn't... even though the behavior is as such at least with what we'll be doing. Still seems spooky to me.</li>
 </ul>
-
-<h4><strong>What, what?</strong></h4>
 
 You're going to be thinking that a lot, but these are the properties that make quantum computers very compelling to use for certain problems. Both superposition and entanglement seem like magic to me, but both are proven qualities of qubits.
 
@@ -90,9 +88,7 @@ It turns out, opening them up to the public, for free, is not uncommon.
 
 Google, Microsoft, IBM, D-Wave, and I am sure many others all offer some form of cloud-based quantum computer access.
 
-I checked into all of the providers that I knew about, and, surprisingly, found IBM's to be the easiest to get up and running with. You really can go from nothing to running on an actual quantum computer in a few minutes. 
-
-For free.
+I checked into all of the providers that I knew about, and, surprisingly, found IBM's to be the easiest to get up and running with. You really can go from nothing to running on an actual quantum computer in a few minutes for free.
 
 FREE.
 
@@ -132,6 +128,7 @@ circuit.x(0)  # not gate, flips qubit 0.
 circuit.cx(0, 1) #cnot, controlled not, Flips 2nd qubit's value if first qubit is 1
 circuit.measure([0,1], [0,1])  # ([qbitregister], [classicalbitregister]) Measure qubit 0 and 1 to classical bits 0 and 1
 ```
+
 ```python
 <qiskit.circuit.instructionset.InstructionSet at 0x7ff3b0bf4290>
 ```
@@ -154,6 +151,7 @@ q_1: |0>─────┤ X ├─╫─┤M├
 ```python
 circuit.draw(output="mpl")  # matplotlib-based visualization.
 ```
+
 ### output 1
 ![output 1](output_1.png)
 
@@ -168,6 +166,7 @@ From there, you can click "copy token" which will copy your token to clipboard, 
 Once you've got your token, you're ready to try to connect to a quantum computer and run there. 
 
 Now you can connect with your token by doing:
+
 ```py
 from qiskit import IBMQ
 
@@ -184,7 +183,8 @@ IBMQ.providers()
 ```
 
 ```python
-provider = IBMQ.get_provider("ibm-q")```
+provider = IBMQ.get_provider("ibm-q")
+```
 
 ```py
 for backend in provider.backends():
@@ -198,24 +198,27 @@ for backend in provider.backends():
 
 ```py
 ibmq_qasm_simulator has 0 queued and simulated qubits
-ibmqx2 has 24 queued and 5 qubits
-ibmq_16_melbourne has 80 queued and 14 qubits
-ibmq_vigo has 19 queued and 5 qubits
-ibmq_ourense has 31 queued and 5 qubits
-ibmq_london has 7 queued and 5 qubits
-ibmq_burlington has 5 queued and 5 qubits
-ibmq_essex has 18 queued and 5 qubits
+ibmq_lima has 0 queued and 5 qubits
+ibmq_belem has 0 queued and 5 qubits
+ibmq_quito has 0 queued and 5 qubits
+simulator_statevector has 0 queued and simulated qubits
+simulator_mps has 0 queued and simulated qubits
+simulator_extended_stabilizer has 0 queued and simulated qubits
+simulator_stabilizer has 0 queued and simulated qubits
+ibmq_manila has 1 queued and 5 qubits
+ibm_nairobi has 3 queued and 7 qubits
+ibm_oslo has 3 queued and 7 qubits
 ```
 
 ```py
 from qiskit.tools.monitor import job_monitor
 
-backend = provider.get_backend("ibmq_london")
+backend = provider.get_backend("ibm_nairobi")
 job = q.execute(circuit, backend=backend, shots=500)
 job_monitor(job)
 ```
 
-Job Status: job has successfully run
+Job Status: job is queued (3)
 
 ```py
 from qiskit.visualization import plot_histogram
@@ -228,6 +231,7 @@ counts = result.get_counts(circuit)
 
 plot_histogram([counts], legend=['Device'])
 ```
+
 ### output 2
 ![output 2](output_2.png)
 
@@ -249,19 +253,22 @@ circuit.h(0) # Hadamard gate, puts qubit 0 into superposition
 circuit.cx(0, 1) #cnot, controlled not, Flips 2nd qubit's value if first qubit is 1
 circuit.measure([0,1], [0,1])  # ([qbitregister], [classicalbitregister]) Measure qubit 0 and 1 to classical bits 0 and 1
 ```
+
 <qiskit.circuit.instructionset.InstructionSet at 0x7ff3b0429310>
 
 ```py
 circuit.draw(output="mpl")
 ```
+
 ### output 3
 ![output 3](output_3.png)
 
 ```py
-backend = provider.get_backend("ibmq_london")
+backend = provider.get_backend("ibm_nairobi")
 job = q.execute(circuit, backend=backend, shots=500)
 job_monitor(job)
 ```
+
 Job Status: job has successfully run
 
 ```py
@@ -270,6 +277,7 @@ counts = result.get_counts(circuit)
 
 plot_histogram([counts], legend=['Device'])
 ```
+
 ### output 4
 ![output 4](output_4.png)
 
@@ -300,6 +308,7 @@ sim_backend = Aer.get_backend('qasm_simulator')
 for backend in Aer.backends():
     print(backend)
 ```
+
 qasm_simulator
 statevector_simulator
 unitary_simulator
@@ -309,7 +318,6 @@ From: https://quantum-computing.ibm.com/jupyter/tutorial/advanced/aer/1_aer_prov
 - QasmSimulator: Allows ideal and noisy multi-shot execution of qiskit circuits and returns counts or memory
 - StatevectorSimulator: Allows ideal single-shot execution of qiskit circuits and returns the final statevector of the simulator after application
 - UnitarySimulator: Allows ideal single-shot execution of qiskit circuits and returns the final unitary matrix of the circuit itself. Note that the circuit cannot contain measure or reset operations for this backend
-        
 
 We'll use the `qasm_simulator`, since this most closely matches what we did above. 
 
@@ -321,6 +329,7 @@ Different outputs allow us different visualizations.
 job = q.execute(circuit, backend=sim_backend, shots=500)
 job_monitor(job)
 ```
+
 Job Status: job has successfully run
 
 ```py
@@ -329,6 +338,7 @@ counts = result.get_counts(circuit)
 
 plot_histogram([counts], legend=['Device'])
 ```
+
 ### output 5
 ![output 5](output_5.png)
 
