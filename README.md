@@ -161,8 +161,6 @@ Alright, we've built our quantum circuit. Time to run the circuit. This is a qua
 
 Head to <strong><a href="https://quantum-computing.ibm.com/" target="blank">Quantum-computing.ibm.com</a></strong>, create an account, and then you can click on the account icon at the top right (at least at the time of my writing this), then choose "my account"
 
-<img src="https://pythonprogramming.net/static/images/quantum-computing/ibm-account.png" style="max-width:500px">
-
 From there, you can click "copy token" which will copy your token to clipboard, which we will use in a moment:
 
 <img src="https://pythonprogramming.net/static/images/quantum-computing/qiskit-token.png" style="max-width:500px">
