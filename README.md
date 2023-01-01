@@ -129,9 +129,7 @@ circuit.cx(0, 1) #cnot, controlled not, Flips 2nd qubit's value if first qubit i
 circuit.measure([0,1], [0,1])  # ([qbitregister], [classicalbitregister]) Measure qubit 0 and 1 to classical bits 0 and 1
 ```
 
-```python
 <qiskit.circuit.instructionset.InstructionSet at 0x7ff3b0bf4290>
-```
 
 ```python
 circuit.draw()  # text-based visualization. (pretty cool ...actually! Nice job whoever did this.)
@@ -174,13 +172,15 @@ IBMQ.save_account("TOKEN HERE")
 # IBMQ.save_account(open("token.txt","r").read()) # by saving the token in a file
 
 IBMQ.load_account()
-<AccountProvider for IBMQ(hub='ibm-q', group='open', project='main')>
 ```
+
+<AccountProvider for IBMQ(hub='ibm-q', group='open', project='main')>
 
 ```python
 IBMQ.providers()
-[<AccountProvider for IBMQ(hub='ibm-q', group='open', project='main')>]
 ```
+
+[<AccountProvider for IBMQ(hub='ibm-q', group='open', project='main')>]
 
 ```python
 provider = IBMQ.get_provider("ibm-q")
@@ -309,9 +309,11 @@ for backend in Aer.backends():
     print(backend)
 ```
 
+```py
 qasm_simulator
 statevector_simulator
 unitary_simulator
+```
 
 From: https://quantum-computing.ibm.com/jupyter/tutorial/advanced/aer/1_aer_provider.ipynb
 
