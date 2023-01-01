@@ -1,7 +1,7 @@
 
 # Quantum world
 
-Welcome to a series on programming quantum computers. There's no shortage of hype around quantum computing on the internet, but I am going to still outline the propositions made by quantum computing in general, as well as how this pertains to us and programmers who intend to work with quantum computers, which we will be doing immediately in this series. 
+Welcome quantum computer programming. There's no shortage of hype around quantum computing on the internet, but I am going to still outline the propositions made by quantum computing in general, as well as how this pertains to us and programmers who intend to work with quantum computers, which we will be doing immediately in this series. 
 
 <h4><strong>Warning</strong></h4>
 
@@ -106,7 +106,7 @@ IBM has also done what I would call a phenomenal job with making both the tools 
 
 <h4><strong>Requisites:</strong></h4>
 
-I am assuming you already have python installed and are beyond the python basics. If not, please start with the basics here: <strong><a href="https://pythonprogramming.net/introduction-learn-python-3-tutorials/" target="blank">Python 3 programming basics tutorial</a></strong>.
+ - install python3
 
 `pip install qiskit numpy jupyterlab matplotlib qiskit-ibmq-provider`
 
@@ -184,12 +184,14 @@ IBMQ.save_account(open("token.txt","r").read())
 This saves on your actual machine, so you only need to do this once ever (unless your token changes), which is why I am getting the "Credentials already present" message. From then on, you can just do:
 
 ```py
-IBMQ.load_account()```
+IBMQ.load_account()
 <AccountProvider for IBMQ(hub='ibm-q', group='open', project='main')>
+```
 
 ```python
-IBMQ.providers()```
+IBMQ.providers()
 [<AccountProvider for IBMQ(hub='ibm-q', group='open', project='main')>]
+```
 
 ```python
 provider = IBMQ.get_provider("ibm-q")```
@@ -204,6 +206,7 @@ for backend in provider.backends():
     print(f"{backend.name()} has {backend.status().pending_jobs} queued and {qubit_count} qubits")
 ```
 
+```py
 ibmq_qasm_simulator has 0 queued and simulated qubits
 ibmqx2 has 24 queued and 5 qubits
 ibmq_16_melbourne has 80 queued and 14 qubits
@@ -212,6 +215,7 @@ ibmq_ourense has 31 queued and 5 qubits
 ibmq_london has 7 queued and 5 qubits
 ibmq_burlington has 5 queued and 5 qubits
 ibmq_essex has 18 queued and 5 qubits
+```
 
 ```py
 from qiskit.tools.monitor import job_monitor
@@ -344,11 +348,7 @@ Anyway, now you can try tinkering about in the simulator, then you can test your
 
 I think that's enough for now! More to come in the future.
 
-If you have questions, please come join us in the <strong><a href="https://discord.gg/sentdex" target="blank">discord channel</a></strong>, otherwise I will see you in the next tutorial!
-
 More resources: 
 
-- General intro to quantum computing: https://www.youtube.com/watch?v=7susESgnDv8
-- Check out the qiskit textbook: https://community.qiskit.org/textbook/
-- as well as Abe's YT lectures here: https://www.youtube.com/watch?v=a1NZC5rqQD8&list=PLOFEBzvs-Vvp2xg9-POLJhQwtVktlYGbY
-- https://quantum-computing.ibm.com/jupyter also has some useful notebooks. 
+- Qiskit textbook: https://community.qiskit.org/textbook/
+- Useful notebooks https://quantum-computing.ibm.com/jupyter 
